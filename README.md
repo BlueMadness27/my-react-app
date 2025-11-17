@@ -1,73 +1,52 @@
-# React + TypeScript + Vite
+# 💸 Simple Expense Tracker (React + TypeScript + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is Phase 1 of a multi-stage project designed to help me learn **TypeScript**, **React**, **component structure**, **state management**, and **API-ready architecture**.  
+The goal is to start with something simple and expand it into a full-featured, real-world application.
 
-Currently, two official plugins are available:
+This project is built using:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ⚛️ React  
+- 🟦 TypeScript  
+- ⚡ Vite  
+- 🎨 Custom UI (no external UI libraries yet)
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📌 Phase 1: Basic Functionality (Completed)
 
-## Expanding the ESLint configuration
+Phase 1 includes:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### ✔ Add New Expenses  
+- Description  
+- Amount  
+- Category (Food, Transport, Shopping, Bills, Other)  
+- Date  
+- Automatically generated ID  
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### ✔ Display Expenses  
+A clean table that shows each entry:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Date  
+- Description  
+- Category  
+- Amount  
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### ✔ Total Calculations  
+The app automatically calculates:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- Total number of expenses  
+- Total amount spent  
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### ✔ Fully Typed with TypeScript  
+The project uses custom types:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+```ts
+type Category = "Food" | "Transport" | "Shopping" | "Bills" | "Other";
+
+interface Expense {
+  id: number;
+  description: string;
+  amount: number;
+  category: Category;
+  date: string;
+}
